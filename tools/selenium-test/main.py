@@ -1,10 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 
 def add_product_to_cart(category, product, amount):
     category = '//a[contains(@href,"id_category=' + category + '")]'
     product = '//a[contains(@href,"id_product=' + product + '")]'
+    categories = browser.find_element_by_id("category-2")
+    hover = ActionChains(browser).move_to_element(categories).perform()
     browser.find_element_by_xpath(category).click()
     browser.find_element_by_xpath(product).click()
     browser.find_element_by_id("quantity_wanted").clear()
@@ -22,15 +25,24 @@ browser.get('https://192.168.1.116/prestashop')
 browser.find_element_by_id("details-button").click()
 browser.find_element_by_id("proceed-link").click()
 
-add_product_to_cart('12', '22', '7')
-add_product_to_cart('11', '26', '1')
+add_product_to_cart('4', '21', '7')
+add_product_to_cart('3', '1', '3')
+add_product_to_cart('3', '2', '6')
+add_product_to_cart('3', '3', '4')
+add_product_to_cart('3', '4', '1')
+add_product_to_cart('7', '23', '1')
+add_product_to_cart('23', '94', '1')
+add_product_to_cart('23', '95', '2')
+add_product_to_cart('23', '96', '3')
+add_product_to_cart('23', '97', '4')
+
 delete_first_product_from_cart()
 time.sleep(1)
 browser.find_element_by_xpath('//a[contains(@href,"order")]').click()
 
 firstname = "testn"
 lastname = "tests"
-email = "abcww2dwewwww@gmail.com"
+email = "abcww2dwewwwwe@gmail.com"
 password = "qaz123WSX"
 birthday = "1970-05-31"
 
@@ -61,3 +73,4 @@ browser.find_elements_by_class_name("center-block")[1].click()
 
 browser.find_elements_by_class_name("hidden-sm-down")[2].click()
 browser.find_element_by_id("history-link").click()
+
