@@ -1,0 +1,5 @@
+/prestashop/cache
+/prestashop/upload
+/prestashop/var/logs
+/prestashop/var/cache
+/prestashop/var/sessions
