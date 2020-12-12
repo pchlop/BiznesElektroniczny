@@ -10,9 +10,10 @@ import sys
 import logging
 
 # Configuration
+# DO NOT DELETE categories.csv file!
 CLIENT_ID = os.getenv('CLIENT_ID')
 CLIENT_SECRET = os.getenv('CLIENT_SECRET')
-COURSE_LIMIT = 100
+COURSE_LIMIT = 500
 OUTPUT_FILE = 'courses.csv'
 OUTPUT_FILE_IMAGE_LOCATION = 'images.csv'
 OUTPUT_IMAGE_DIR = 'images/'
@@ -21,7 +22,8 @@ LANGUAGE = 'en'
 client = UdemyClient(CLIENT_ID, CLIENT_SECRET)
 images = {}
 locations = {}
-total = math.ceil(COURSE_LIMIT / 20)
+counter = 0
+page = 1
 
 # Load categories from CSV
 categories = []
@@ -34,11 +36,13 @@ current_cat = 0
 
 # Download courses data
 with tqdm(total=COURSE_LIMIT, desc='Downloading courses data', file=sys.stdout) as pbar:
-    for i in range(total):
+    while counter < COURSE_LIMIT:
         # 20 results per request
-        courses = client.courses(page=i, page_size=1, language=LANGUAGE, subcategory=categories[current_cat])
+        courses = client.courses(page=page, page_size=1, language=LANGUAGE, subcategory=categories[current_cat])
         try:
             for item in courses['results']:
+                if counter == COURSE_LIMIT:
+                    break
                 image_filename = item['published_title'] + '.jpg'
                 image_location = '/'.join([str(x) for x in str(item['id'])]) + '/' + image_filename
                 images[image_filename] = item['image_480x270']
@@ -50,6 +54,7 @@ with tqdm(total=COURSE_LIMIT, desc='Downloading courses data', file=sys.stdout) 
                         item['id'], current_cat + 1, item['title'], item['published_title'], item['headline'],
                         price, image_location
                     ])
+                counter += 1
             pbar.update(len(courses['results']))
             current_cat += 1
         except Exception as e:
