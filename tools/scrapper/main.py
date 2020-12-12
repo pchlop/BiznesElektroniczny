@@ -5,7 +5,6 @@ from tqdm import tqdm
 import urllib.request
 import os
 import csv
-import math
 import sys
 import logging
 
