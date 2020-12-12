@@ -7,11 +7,12 @@ import os
 import csv
 import math
 import sys
+import logging
 
 # Configuration
 CLIENT_ID = os.getenv('CLIENT_ID')
 CLIENT_SECRET = os.getenv('CLIENT_SECRET')
-COURSE_LIMIT = 40
+COURSE_LIMIT = 100
 OUTPUT_FILE = 'courses.csv'
 OUTPUT_FILE_IMAGE_LOCATION = 'images.csv'
 OUTPUT_IMAGE_DIR = 'images/'
@@ -22,22 +23,52 @@ images = {}
 locations = {}
 total = math.ceil(COURSE_LIMIT / 20)
 
+categories = [
+    'Advertising',
+    'Cryptocurrency & Blockchain',
+    'Data Science',
+    'Database Design & Development',
+    'Design Tools',
+    'Development Tools',
+    'E-Commerce',
+    'Graphic Design & Illustration',
+    'Growth Hacking',
+    'IT Certification',
+    'Microsoft',
+    'Mobile Development',
+    'Network & Security',
+    'Online Education',
+    'Oracle',
+    'Software Engineering',
+    'Video & Mobile Marketing',
+    'Web Design',
+    'Web Development',
+    'Programming Languages'
+]
+
+current_cat = 0
+
 # Download courses data
 with tqdm(total=COURSE_LIMIT, desc='Downloading courses data', file=sys.stdout) as pbar:
     for i in range(total):
-        courses = client.courses(page=i, page_size=1, language=LANGUAGE)  # 20 results per request
-        for item in courses['results']:
-            image_filename = item['published_title'] + '.jpg'
-            image_location = '/'.join([str(x) for x in str(item['id'])]) + '/' + image_filename
-            images[image_filename] = item['image_480x270']
-            locations[image_filename] = image_location
-            with open(OUTPUT_FILE, mode='a') as csv_file:
-                courses_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                courses_writer.writerow([
-                    item['id'], item['title'], item['published_title'], item['headline'],
-                    item['price_detail']['amount'], image_location
-                ])
-        pbar.update(20)
+        # 20 results per request
+        courses = client.courses(page=i, page_size=1, language=LANGUAGE, subcategory=categories[current_cat])
+        try:
+            for item in courses['results']:
+                image_filename = item['published_title'] + '.jpg'
+                image_location = '/'.join([str(x) for x in str(item['id'])]) + '/' + image_filename
+                images[image_filename] = item['image_480x270']
+                locations[image_filename] = image_location
+                with open(OUTPUT_FILE, mode='a') as csv_file:
+                    courses_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                    courses_writer.writerow([
+                        item['id'], current_cat + 1, item['title'], item['published_title'], item['headline'],
+                        item['price_detail']['amount'], image_location
+                    ])
+            pbar.update(20)
+            current_cat += 1
+        except Exception as e:
+            logging.exception(e)
 
 # Create images directory if not exists
 Path('./images').mkdir(parents=True, exist_ok=True)
