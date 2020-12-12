@@ -7,7 +7,7 @@ import math
 
 CLIENT_ID = os.getenv('CLIENT_ID')
 CLIENT_SECRET = os.getenv('CLIENT_SECRET')
-COURSE_LIMIT = 500;
+COURSE_LIMIT = 500
 OUTPUT_FILE = 'courses.csv'
 OUTPUT_IMAGE_DIR = 'images/'
 
