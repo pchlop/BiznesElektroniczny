@@ -19,7 +19,7 @@ images = {}
 total = math.ceil(COURSE_LIMIT / 20)
 
 # Download courses data
-with tqdm(total=total, desc='Downloading courses data', file=sys.stdout) as pbar:
+with tqdm(total=total * 20, desc='Downloading courses data', file=sys.stdout) as pbar:
     for i in range(total):
         courses = client.courses(page=i, page_size=1)  # 20 results per request
         for item in courses['results']:
@@ -29,7 +29,7 @@ with tqdm(total=total, desc='Downloading courses data', file=sys.stdout) as pbar
                 courses_writer.writerow([
                     item['title'], item['published_title'], item['headline'], item['price'], item['image_480x270']
                 ])
-        pbar.update(1)
+        pbar.update(20)
 
 # Create images directory if not exists
 Path('./images').mkdir(parents=True, exist_ok=True)
