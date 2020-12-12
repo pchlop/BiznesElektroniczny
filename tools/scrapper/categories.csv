@@ -1,16 +1,136 @@
-1,Advertising
-2,Cryptocurrency & Blockchain
-3,Data Science
-4,Database Design & Development
-5,Design ToolsDevelopment Tools
-6,E-Commerce
-7,Graphic Design & IllustrationGrowth Hacking
-8,IT Certification
-9,MicrosoftMobile Development
-10,Network & Security
-11,Online Education
-12,OracleSoftware Engineering
-13,Video & Mobile Marketing
-14,Web Design
-15,Web Development
-16,Programming Languages
+id,name
+1,3D & Animation
+2,Accounting & Bookkeeping
+3,Advertising
+4,Affiliate Marketing
+5,Apple
+6,Architectural Design
+7,Arts & Crafts
+8,Beauty & Makeup
+9,Branding
+10,Business Analytics & Intelligence
+11,Business Law
+12,Business Strategy
+13,Career Development
+14,Commercial Photography
+15,Communications
+16,Compliance
+17,Content Marketing
+18,Creativity
+19,Cryptocurrency & Blockchain
+20,Dance
+21,Data Science
+22,Database Design & Development
+23,Design Thinking
+24,Design Tools
+25,Development Tools
+26,Dieting
+27,Digital Marketing
+28,Digital Photography
+29,E-Commerce
+30,Economics
+31,Engineering
+32,EntrepreneurshipEsoteric Practices
+33,Essential Tech Skills
+34,Fashion Design
+35,Finance
+36,Finance Cert & Exam Prep
+37,Financial Modeling & Analysis
+38,Fitness
+39,Food & Beverage
+40,Game Design
+41,Game Development
+42,Gaming
+43,General Health
+44,Google
+45,Graphic Design & Illustration
+46,Growth Hacking
+47,Happiness
+48,Hardware
+49,Home Improvement
+50,Human Resources
+51,Humanities
+52,Industry
+53,Influence
+54,Instruments
+55,Interior Design
+56,Investing & Trading
+57,IT Certification
+58,Language
+59,Leadership
+60,Management
+61,Marketing Analytics & Automation
+62,Marketing Fundamentals
+63,Math
+64,Media
+65,Meditation
+66,Memory & Study Skills
+67,Mental Health
+68,Microsoft
+69,Mobile Development
+70,Money Management Tools
+71,Motivation
+72,Music Fundamentals
+73,Music Production
+74,Music Software
+75,Music Techniques
+76,Network & Security
+77,No-Code Development
+78,Nutrition
+79,Online Education
+80,Operating Systems
+81,Operations
+82,Oracle
+83,Other Business
+84,Other Design
+85,Other Finance & Accounting
+86,Other Health & Fitness
+87,Other IT & Software
+88,Other Lifestyle
+89,Other Marketing
+90,Other Music
+91,Other Office Productivity
+92,Other Personal Development
+93,Other Photography & Video
+94,Other Teaching & Academics
+95,Parenting & Relationships
+96,Personal Brand Building
+97,Personal Growth & Wellness
+98,Personal Productivity
+99,Personal Transformation
+100,Pet Care & Training
+101,Photography
+102,Photography Tools
+103,Portrait Photography
+104,Product Marketing
+105,Productivity & Professional Skills
+106,Programming Languages
+107,Project Management
+108,Public Relations
+109,Real Estate
+110,Religion & Spirituality
+111,Safety & First Aid
+112,Sales
+113,SAP
+114,Science
+115,Search Engine Optimization
+116,Self Defense
+117,Self Esteem & Confidence
+118,Social Media Marketing
+119,Social Science
+120,Software Engineering
+121,Software Testing
+122,Sports
+123,Stress Management
+124,Taxes
+125,Teacher Training
+126,Test Prep
+127,Travel
+128,User Experience Design
+129,Video & Mobile Marketing
+130,Video Design
+131,Vocal
+132,Vodafone
+133,Web Design
+134,Web Development
+135,Yoga
