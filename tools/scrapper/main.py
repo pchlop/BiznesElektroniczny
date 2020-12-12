@@ -9,14 +9,14 @@ import sys
 import logging
 
 # Configuration
-# DO NOT DELETE categories.csv file!
+# DO NOT DELETE config/categories.csv file!
 CLIENT_ID = os.getenv('CLIENT_ID')
 CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 COURSE_LIMIT = 500
 OUTPUT_FILE = 'courses.csv'
 OUTPUT_FILE_IMAGE_LOCATION = 'images.csv'
 OUTPUT_IMAGE_DIR = 'images/'
-LANGUAGE = 'en'
+LANGUAGE = 'pl'
 
 client = UdemyClient(CLIENT_ID, CLIENT_SECRET)
 images = {}
@@ -26,7 +26,7 @@ page = 1
 
 # Load categories from CSV
 categories = []
-with open('categories.csv', 'r') as file:
+with open('config/categories.csv', 'r') as file:
     reader = csv.DictReader(file)
     for row in reader:
         categories.append(row['name'])
@@ -54,10 +54,15 @@ with tqdm(total=COURSE_LIMIT, desc='Downloading courses data', file=sys.stdout) 
                         price, image_location
                     ])
                 counter += 1
-            pbar.update(len(courses['results']))
-            current_cat += 1
+            else:
+                pbar.update(len(courses['results']))
+                current_cat += 1
+                continue
+            pbar.update(COURSE_LIMIT - pbar.n)
+            break
         except Exception as e:
             logging.exception(e)
+            break
 
 # Create images directory if not exists
 Path('./images').mkdir(parents=True, exist_ok=True)
