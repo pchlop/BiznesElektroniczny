@@ -1,0 +1,64 @@
+version: '3'
+
+networks:
+  web-network:
+    driver: bridge
+
+services:
+  nginx:
+    container_name: biz-nginx
+    hostname: biznes-elektroniczny-nginx
+    restart: unless-stopped
+    build:
+      context: ./docker/nginx
+    ports:
+      - "8080:80"
+      - "8081:443"
+    tty: true
+    volumes:
+      - ./prestashop:/var/www/html/prestashop
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - web-network
+
+  php-fpm:
+    container_name: biz-php
+    hostname: biznes-elektroniczny-php
+    restart: unless-stopped
+    build:
+      context: ./docker/php
+    tty: true
+    volumes:
+      - ./prestashop:/var/www/html
+    ports:
+      - "9000"
+    networks:
+      - web-network
+
+  db:
+    image: mysql:5.7.32
+    container_name: biz-db
+    hostname: biznes-elektroniczny-db
+    restart: unless-stopped
+    tty: true
+    environment:
+      MYSQL_DATABASE: prestashop
+      MYSQL_ROOT_PASSWORD: 12341234
+    networks:
+      - web-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: biz-phpmyadmin
+    hostname: biznes-elektroniczny-phpmyadmin
+    restart: unless-stopped
+    tty: true
+    ports:
+      - '8079:80'
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+    networks:
+      - web-network
+    depends_on:
+      - db

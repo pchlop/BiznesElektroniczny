@@ -1,11 +1,11 @@
 <?php return array (
   'parameters' => 
   array (
-    'database_host' => '127.0.0.1',
-    'database_port' => '',
+    'database_host' => 'biznes-elektroniczny-db',
+    'database_port' => '3306',
     'database_name' => 'prestashop',
     'database_user' => 'root',
-    'database_password' => 'Biznes2020',
+    'database_password' => '12341234',
     'database_prefix' => 'ps_',
     'database_engine' => 'InnoDB',
     'mailer_transport' => 'smtp',
