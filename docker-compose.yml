@@ -16,7 +16,7 @@ services:
       - "8081:443"
     tty: true
     volumes:
-      - ./prestashop:/var/www/html/prestashop
+      - ./prestashop:/var/www/html
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
     networks:
       - web-network
